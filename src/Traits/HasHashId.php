@@ -70,6 +70,12 @@ trait HasHashId
 
         $generator = Generator::build(__CLASS__);
 
-        return $generator->decode($hashIdInstance->hashIdForKey)[0];
+        $decodedIds = $generator->decode($hashIdInstance->hashIdForKey);
+
+        if ($decodedIds && count($decodedIds)) {
+            return $decodedIds[0];
+        } else {
+            return null;
+        }
     }
 }
